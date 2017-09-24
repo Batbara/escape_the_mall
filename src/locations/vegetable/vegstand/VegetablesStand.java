@@ -1,9 +1,7 @@
-package scenes.vegetable.vegstand;
+package locations.vegetable.vegstand;
 
 
-import scenes.ClickableObject;
-
-import java.util.Observable;
+import locations.ClickableObject;
 
 public class VegetablesStand implements ClickableObject{
     private String description;

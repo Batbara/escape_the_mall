@@ -1,6 +1,6 @@
-package scenes.vegetable.vegcloseup;
+package locations.vegetable.vegcloseup;
 
-import scenes.ClickableObject;
+import locations.ClickableObject;
 
 public class Lemonz implements ClickableObject{
     private String description;

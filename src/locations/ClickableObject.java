@@ -1,4 +1,4 @@
-package scenes;
+package locations;
 
 public interface ClickableObject {
     String getDescription();

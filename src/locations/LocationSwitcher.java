@@ -1,4 +1,4 @@
-package scenes;
+package locations;
 
 import javax.swing.*;
 import java.awt.*;

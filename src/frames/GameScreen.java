@@ -1,7 +1,7 @@
 package frames;
 
 import inventory.InventoryView;
-import scenes.LocationManager;
+import locations.LocationManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +22,6 @@ public class GameScreen {
     private void initComponents(){
         statusBar = new StatusBar();
         inventoryView = new InventoryView();
-       // mainScene = new GameScene();
         locationManager = new LocationManager();
     }
     private void placeComponents(){

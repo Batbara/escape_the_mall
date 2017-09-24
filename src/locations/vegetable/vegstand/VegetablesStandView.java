@@ -1,6 +1,7 @@
-package scenes.vegetable.vegstand;
+package locations.vegetable.vegstand;
 
 import frames.PanelWithImage;
+import frames.Tools;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -15,11 +16,7 @@ public class VegetablesStandView extends Observable {
     private VegetableStandScene parentScene;
 
     public VegetablesStandView(VegetableStandScene parentScene) {
-        try {
-            initPanel("vegStand");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        initPanel();
         this.parentScene = parentScene;
         vegStandPanel.addMouseListener(new CustomMouseListener(this));
     }
@@ -39,12 +36,12 @@ public class VegetablesStandView extends Observable {
         notifyObservers(true);
     }
 
-    void initPanel(String fileName) throws IOException {
-        String path = "/scenes/vegetable/img/" + fileName + ".png";
-
-        BufferedImage background = ImageIO.read(new File(this.getClass().getResource(path).getPath()));
-        vegStandPanel = new PanelWithImage(background);
-        vegStandPanel.setSize(new Dimension(background.getWidth(), background.getHeight()));
+    private void initPanel()  {
+        try {
+            vegStandPanel = Tools.getInstance().createPanel("/locations/vegetable/img/vegStand");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public PanelWithImage getVegStandPanel() {

@@ -1,12 +1,10 @@
-package scenes.vegetable.vegstand;
+package locations.vegetable.vegstand;
 
 import frames.PanelWithImage;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.peer.PanelPeer;
 
 public class CustomMouseListener extends MouseAdapter{
     private VegetablesStandView standView;

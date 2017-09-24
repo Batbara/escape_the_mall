@@ -7,7 +7,7 @@ public class InventoryView {
     private JPanel inventoryPanel;
     public InventoryView(){
         inventoryPanel = new JPanel();
-        inventoryPanel.setSize(new Dimension(350,750));
+        inventoryPanel.setSize(new Dimension(325,750));
         inventoryPanel.setPreferredSize(inventoryPanel.getSize());
         inventoryPanel.setBackground(Color.magenta);
     }

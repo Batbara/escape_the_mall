@@ -1,4 +1,4 @@
-package scenes.vegetable.vegstand;
+package locations.vegetable.vegstand;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -22,7 +22,8 @@ public class VegetableStandPresenter implements Observer {
                 model.setPressedStatus(true);
 
                    VegetableStandScene mainScene=((VegetablesStandView)observableView).getParentScene();
-                   mainScene.changeBackground("vegcloseup");
+
+                   mainScene.changeScene();
             }
         }
 
