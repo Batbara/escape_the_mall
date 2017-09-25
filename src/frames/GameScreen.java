@@ -27,7 +27,12 @@ public class GameScreen {
     private void placeComponents(){
         gameScreen.setLayout(new BorderLayout());
         gameScreen.add(statusBar.getStatusBarPanel(),BorderLayout.PAGE_END);
-        gameScreen.add(inventoryView.getInventoryPanel(),BorderLayout.EAST);
+        JPanel inventoryHolder = new JPanel();
+        inventoryHolder.setLayout(new BoxLayout(inventoryHolder,BoxLayout.Y_AXIS));
+
+        inventoryHolder.add(Box.createRigidArea(new Dimension(inventoryHolder.getWidth(),40)));
+        inventoryHolder.add(inventoryView.getInventoryPanel());
+        gameScreen.add(inventoryHolder,BorderLayout.EAST);
         gameScreen.add(locationManager.getGamePane(),BorderLayout.WEST);
     }
 

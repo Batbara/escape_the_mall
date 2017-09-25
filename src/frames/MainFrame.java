@@ -27,7 +27,9 @@ public class MainFrame {
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        frame.setPreferredSize(new Dimension(1200, 700));
+        frame.setPreferredSize(new Dimension(1150, 655));
+        frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setSize(frame.getPreferredSize());
         frame.setResizable(false);
     }

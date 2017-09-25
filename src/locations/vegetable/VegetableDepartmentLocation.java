@@ -17,7 +17,7 @@ public class VegetableDepartmentLocation extends Observable{
     public VegetableDepartmentLocation(){
         container = new JPanel();
         vegStandScene = new VegetableStandScene(this);
-        vegCloseUpScene = new VegCloseUpScene();
+        vegCloseUpScene = new VegCloseUpScene(this);
         initScenesOrder();
         addToContainer();
         addObserver(new VegetableDepartmentPresenter(this));
@@ -39,7 +39,7 @@ public class VegetableDepartmentLocation extends Observable{
         return "Овощной отдел";
     }
     private void addToContainer(){
-       // container.add(vegCloseUpScene.getCloseUpSceneScene());
+       // container.add(vegCloseUpScene.getCloseUpScenePanel());
         container.add(vegStandScene.getVegetablesScene());
     }
 
@@ -49,7 +49,7 @@ public class VegetableDepartmentLocation extends Observable{
     public PanelWithImage getScenePanel(String sceneID){
         switch (sceneID){
             case "vegcloseup":
-                return vegCloseUpScene.getCloseUpSceneScene();
+                return vegCloseUpScene.getCloseUpScenePanel();
             case "vegstand":
                 return vegStandScene.getVegetablesScene();
         }

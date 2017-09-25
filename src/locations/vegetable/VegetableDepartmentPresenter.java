@@ -21,13 +21,22 @@ public class VegetableDepartmentPresenter implements Observer{
         locationContainer.revalidate();
         locationContainer.repaint();
     }
+    private void removeChangedScene(String name){
+        VegetableDepartmentLocation location = (VegetableDepartmentLocation)observable;
+        JPanel locationContainer = location.getContainer();
+        PanelWithImage sceneToRemove = location.getScenePanel(name);
+        locationContainer.remove(sceneToRemove);
+        locationContainer.revalidate();
+        locationContainer.repaint();
+    }
     @Override
     public void update(Observable o, Object arg) {
         observable = o;
-        String chagnedScene = (String)arg;
+        String changedScene = (String)arg;
+        removeChangedScene(changedScene);
         Map<String,String> scenesOrder = ((VegetableDepartmentLocation)observable).getScenesOrder();
         for (String key : scenesOrder.keySet()){
-            if(chagnedScene.equals(key)){
+            if(changedScene.equals(key)){
                 setScene(scenesOrder.get(key));
             }
         }

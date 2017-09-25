@@ -18,12 +18,7 @@ public class VegetableStandScenePresenter implements Observer {
         this.observableView=observableView;
         observableView.addObserver(this);
     }
-    void resetPicture(String name) throws IOException {
-        String path = "/locations/vegetable/img/" +name+".png";
-        BufferedImage image = ImageIO.read(new File(this.getClass().getResource(path).getPath()));
-        PanelWithImage scenesPanel =  ((VegetableStandScene)observableView).getVegetablesScene();
-        scenesPanel.setImage(image);
-    }
+
     private void removePanel(){
         VegetableStandScene vegetableStandScene = (VegetableStandScene)observableView;
         VegetableDepartmentLocation parentLocation = vegetableStandScene.getParentPane();

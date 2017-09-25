@@ -85,7 +85,7 @@ public class StarterScreen {
         constraint.gridy = 0;
         //  constraint.weighty=1.2;
         constraint.anchor = GridBagConstraints.CENTER;
-        constraint.ipady = 380;
+        constraint.ipady = 345;
         //  constraint.gridwidth = GridBagConstraints.CENTER;
 
         screen.add(optionButtons.get("play"), constraint);

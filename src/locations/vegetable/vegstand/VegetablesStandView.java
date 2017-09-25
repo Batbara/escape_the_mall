@@ -3,10 +3,6 @@ package locations.vegetable.vegstand;
 import frames.PanelWithImage;
 import frames.Tools;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 
@@ -18,7 +14,7 @@ public class VegetablesStandView extends Observable {
     public VegetablesStandView(VegetableStandScene parentScene) {
         initPanel();
         this.parentScene = parentScene;
-        vegStandPanel.addMouseListener(new CustomMouseListener(this));
+        vegStandPanel.addMouseListener(new VegStandListener(this));
     }
 
     public VegetableStandPresenter getPresenter() {

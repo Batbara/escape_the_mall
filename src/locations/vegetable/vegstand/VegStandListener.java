@@ -6,9 +6,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class CustomMouseListener extends MouseAdapter{
+public class VegStandListener extends MouseAdapter{
     private VegetablesStandView standView;
-    public CustomMouseListener(VegetablesStandView standView){
+    public VegStandListener(VegetablesStandView standView){
         this.standView = standView;
     }
     @Override
