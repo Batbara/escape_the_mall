@@ -16,7 +16,7 @@ public class LocationManager {
     public LocationManager(){
         initMainPanel();
         initLocations();
-        initScenesHolder();
+        initLocationsHolder();
         locationSwitcher = new LocationSwitcher(getLocationsNames());
         locationSwitcher.assignListener(this);
         addToGamePane();
@@ -28,8 +28,11 @@ public class LocationManager {
         vegDptLocation = new VegetableDepartmentLocation();
         theDoorLocation = new TheDoorLocation();
     }
-    private void initScenesHolder(){
+    private void initLocationsHolder(){
          locationsHolder = new JPanel(new CardLayout());
+         locationsHolder.setSize(new Dimension(860,529));
+         locationsHolder.setPreferredSize(locationsHolder.getSize());
+         locationsHolder.setMaximumSize(locationsHolder.getSize());
         //locationsHolder = place all locations on this panel
         locationsHolder.add(vegDptLocation.getLocationContainer(),vegDptLocation.getLocationLabel());
         locationsHolder.add(theDoorLocation.getLocationContainer(),theDoorLocation.getLocationLabel());

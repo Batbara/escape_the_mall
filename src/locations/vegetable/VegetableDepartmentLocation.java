@@ -17,7 +17,7 @@ public class VegetableDepartmentLocation extends Observable implements Location 
     private VegCloseUpScene vegCloseUpScene;
     private Map<String,String> scenesOrder;
     public VegetableDepartmentLocation(){
-        container = new JPanel();
+        container = new JPanel(new GridLayout(1,1));
         vegStandScene = new VegetableStandScene(this);
         vegCloseUpScene = new VegCloseUpScene(this);
         initScenesOrder();

@@ -15,7 +15,10 @@ public class TheDoorLocation extends Observable implements Location{
     private DoorScene doorScene;
     private Map<String, String> scenesOrder;
     public TheDoorLocation(){
-        container = new JPanel();
+        container = new JPanel(new GridLayout(1,1));
+//        container.setSize(new Dimension(860,529));
+//        container.setPreferredSize(container.getSize());
+        //container.setBackground(Color.red);
         doorScene = new DoorScene(this);
         initScenesOrder();
         addScenesToContainer();
@@ -30,7 +33,6 @@ public class TheDoorLocation extends Observable implements Location{
         notifyObservers(name);
     }
     private void addScenesToContainer(){
-        System.out.println("adding scenes to container");
         container.add(doorScene.getDoorScenePanel());
     }
     @Override
@@ -54,7 +56,6 @@ public class TheDoorLocation extends Observable implements Location{
 
     @Override
     public JPanel getLocationContainer() {
-        System.out.println("returning container");
         return container;
     }
 }

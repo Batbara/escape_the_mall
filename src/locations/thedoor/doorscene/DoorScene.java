@@ -21,8 +21,10 @@ public class DoorScene extends Observable implements Scene, SceneSwitcher{
         }
         private void initHandlePanel(){
             doorHandlePanel = new JPanel();
-            doorHandlePanel.setSize(new Dimension(50,50));
+            doorHandlePanel.setSize(new Dimension(50,80));
             doorHandlePanel.setPreferredSize(doorHandlePanel.getSize());
+
+            doorHandlePanel.setOpaque(false);
         }
 
     }
@@ -37,6 +39,7 @@ public class DoorScene extends Observable implements Scene, SceneSwitcher{
 
     }
     private void initScenePanel(){
+        System.out.println("initing panel");
         try {
             doorScenePanel = Tools.getInstance().createPanel("/locations/thedoor/img/door");
         } catch (IOException e) {
@@ -50,11 +53,11 @@ public class DoorScene extends Observable implements Scene, SceneSwitcher{
 
     @Override
     public void placeObjectsOnScene() {
-        doorScenePanel.setLayout(null);
+        //doorScenePanel.setLayout(null);
         DoorScene.DoorHandle doorHandle = this.new DoorHandle();
         JPanel handlePanel = doorHandle.doorHandlePanel;
+        handlePanel.setBounds(348,265,handlePanel.getWidth(),handlePanel.getHeight());
         doorScenePanel.add(handlePanel);
-        handlePanel.setBounds(250,450,handlePanel.getWidth(),handlePanel.getHeight());
 
     }
 
@@ -70,6 +73,7 @@ public class DoorScene extends Observable implements Scene, SceneSwitcher{
     }
 
     public PanelWithImage getDoorScenePanel() {
+        System.out.println("getting door scene panel");
         return doorScenePanel;
     }
 }
