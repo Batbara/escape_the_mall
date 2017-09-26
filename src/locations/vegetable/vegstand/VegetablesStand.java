@@ -1,9 +1,7 @@
 package locations.vegetable.vegstand;
 
 
-import locations.ClickableObject;
-
-public class VegetablesStand implements ClickableObject{
+public class VegetablesStand {
     private String description;
     private boolean pressedStatus;
     public VegetablesStand(){

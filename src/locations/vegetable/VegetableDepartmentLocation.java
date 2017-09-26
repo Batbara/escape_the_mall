@@ -1,15 +1,17 @@
 package locations.vegetable;
 
 import frames.PanelWithImage;
+import locations.Location;
 import locations.vegetable.vegcloseup.VegCloseUpScene;
 import locations.vegetable.vegstand.VegetableStandScene;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 
-public class VegetableDepartmentLocation extends Observable{
+public class VegetableDepartmentLocation extends Observable implements Location {
     private JPanel container;
     private VegetableStandScene vegStandScene;
     private VegCloseUpScene vegCloseUpScene;
@@ -32,7 +34,7 @@ public class VegetableDepartmentLocation extends Observable{
         scenesOrder.put(vegStandScene.getSceneID(),vegCloseUpScene.getSceneID());
         scenesOrder.put(vegCloseUpScene.getSceneID(),vegStandScene.getSceneID());
     }
-    public JPanel getContainer() {
+    public JPanel getLocationContainer() {
         return container;
     }
     public String getLocationLabel() {

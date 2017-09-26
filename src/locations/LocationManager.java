@@ -1,5 +1,6 @@
 package locations;
 
+import locations.thedoor.TheDoorLocation;
 import locations.vegetable.VegetableDepartmentLocation;
 
 import javax.swing.*;
@@ -8,17 +9,15 @@ import java.util.Vector;
 
 public class LocationManager {
     private JPanel gamePane;
-    private JPanel scenesHolder;
+    private JPanel locationsHolder;
     private LocationSwitcher locationSwitcher;
     private VegetableDepartmentLocation vegDptLocation;
+    private TheDoorLocation theDoorLocation;
     public LocationManager(){
         initMainPanel();
         initLocations();
         initScenesHolder();
-
-        Vector<String> locationsNamesList = new Vector<>();
-        locationsNamesList.add(vegDptLocation.getLocationLabel());
-        locationSwitcher = new LocationSwitcher(locationsNamesList);
+        locationSwitcher = new LocationSwitcher(getLocationsNames());
         locationSwitcher.assignListener(this);
         addToGamePane();
     }
@@ -27,20 +26,28 @@ public class LocationManager {
     }
     private void initLocations(){
         vegDptLocation = new VegetableDepartmentLocation();
+        theDoorLocation = new TheDoorLocation();
     }
     private void initScenesHolder(){
-         scenesHolder = new JPanel(new CardLayout());
-        //scenesHolder = place all locations on this panel
-        scenesHolder.add(vegDptLocation.getContainer(),vegDptLocation.getLocationLabel());
+         locationsHolder = new JPanel(new CardLayout());
+        //locationsHolder = place all locations on this panel
+        locationsHolder.add(vegDptLocation.getLocationContainer(),vegDptLocation.getLocationLabel());
+        locationsHolder.add(theDoorLocation.getLocationContainer(),theDoorLocation.getLocationLabel());
+    }
+    private Vector<String> getLocationsNames(){
+        Vector<String> locationsNamesList = new Vector<>();
+        locationsNamesList.add(vegDptLocation.getLocationLabel());
+        locationsNamesList.add(theDoorLocation.getLocationLabel());
+        return locationsNamesList;
     }
     private void addToGamePane(){
 
         gamePane.add(locationSwitcher.getSwitcherContainer(),BorderLayout.PAGE_START);
-        gamePane.add(scenesHolder,BorderLayout.CENTER);
+        gamePane.add(locationsHolder,BorderLayout.CENTER);
     }
 
-    public JPanel getScenesHolder() {
-        return scenesHolder;
+    public JPanel getLocationsHolder() {
+        return locationsHolder;
     }
 
     public JPanel getGamePane() {

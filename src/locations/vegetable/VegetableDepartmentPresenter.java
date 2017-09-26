@@ -3,7 +3,6 @@ package locations.vegetable;
 import frames.PanelWithImage;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -15,7 +14,7 @@ public class VegetableDepartmentPresenter implements Observer{
     }
     private void setScene(String name){
         VegetableDepartmentLocation location = (VegetableDepartmentLocation)observable;
-        JPanel locationContainer = location.getContainer();
+        JPanel locationContainer = location.getLocationContainer();
         PanelWithImage sceneToSet = location.getScenePanel(name);
         locationContainer.add(sceneToSet);
         locationContainer.revalidate();
@@ -23,7 +22,7 @@ public class VegetableDepartmentPresenter implements Observer{
     }
     private void removeChangedScene(String name){
         VegetableDepartmentLocation location = (VegetableDepartmentLocation)observable;
-        JPanel locationContainer = location.getContainer();
+        JPanel locationContainer = location.getLocationContainer();
         PanelWithImage sceneToRemove = location.getScenePanel(name);
         locationContainer.remove(sceneToRemove);
         locationContainer.revalidate();

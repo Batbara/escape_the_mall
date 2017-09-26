@@ -1,8 +1,10 @@
 package locations.vegetable.vegcloseup;
 
 import frames.PanelWithImage;
+import frames.SceneSwitcherListener;
 import frames.Tools;
 import locations.Scene;
+import locations.SceneSwitcher;
 import locations.vegetable.VegetableDepartmentLocation;
 
 import javax.swing.*;
@@ -10,7 +12,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Observable;
 
-public class VegCloseUpScene extends Observable implements Scene{
+public class VegCloseUpScene extends Observable implements Scene, SceneSwitcher{
     private PanelWithImage closeUpScenePanel;
     private LemonzView lemonzView;
     private JPanel returningArea;
@@ -35,7 +37,7 @@ public class VegCloseUpScene extends Observable implements Scene{
         returningArea = new JPanel();
         returningArea.setSize(new Dimension(closeUpScenePanel.getWidth()-150,240));
         returningArea.setOpaque(false);
-        returningArea.addMouseListener(new ReturningAreaListener(this));
+        returningArea.addMouseListener(new SceneSwitcherListener(this));
     }
     @Override
     public void placeObjectsOnScene() {
@@ -53,12 +55,15 @@ public class VegCloseUpScene extends Observable implements Scene{
     public String getSceneID(){
         return "vegcloseup";
     }
-    public void switchScene(){
-        setChanged();
-        notifyObservers("return");
-    }
+
 
     public VegetableDepartmentLocation getParentLocation() {
         return parentLocation;
+    }
+
+    @Override
+    public void sceneSwitched() {
+        setChanged();
+        notifyObservers("vegcloseup");
     }
 }

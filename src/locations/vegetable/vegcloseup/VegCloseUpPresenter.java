@@ -14,7 +14,7 @@ public class VegCloseUpPresenter implements Observer {
     public void update(Observable o, Object arg) {
         if(arg instanceof String){
             VegetableDepartmentLocation parentLocation = ((VegCloseUpScene)observable).getParentLocation();
-            parentLocation.sceneChanged("vegcloseup");
+            parentLocation.sceneChanged((String)arg);
         }
     }
 }

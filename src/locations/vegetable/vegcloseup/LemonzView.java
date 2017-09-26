@@ -16,6 +16,7 @@ public class LemonzView extends Observable {
     public LemonzView(){
         initPanel();
         lemonzPanel.addMouseListener(new LemonzMouseListener());
+
     }
     private void initPanel(){
         try {

@@ -2,6 +2,7 @@ package frames;
 
 import inventory.InventoryView;
 import locations.LocationManager;
+import status.StatusBar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,5 +39,9 @@ public class GameScreen {
 
     public JPanel getGameScreen() {
         return gameScreen;
+    }
+
+    public StatusBar getStatusBar() {
+        return statusBar;
     }
 }

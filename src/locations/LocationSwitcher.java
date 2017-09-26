@@ -16,8 +16,6 @@ public class LocationSwitcher {
     }
     private void initComboBox(){
         switchingBox = new JComboBox(labels);
-       // String testItems[] = { "test1","test2" };
-        //switchingBox = new JComboBox(testItems);
     }
     private void addToContainer(){
         switcherContainer.add(new Label("Локация:"));
@@ -30,8 +28,5 @@ public class LocationSwitcher {
     public void assignListener(LocationManager locationManager){
 
         switchingBox.addItemListener(new SwitchItemListener(locationManager));
-    }
-    public JComboBox getSwitchingBox() {
-        return switchingBox;
     }
 }

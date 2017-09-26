@@ -14,9 +14,9 @@ public class SwitchItemListener implements ItemListener{
     @Override
     public void itemStateChanged(ItemEvent e) {
 
-        JPanel scenesHolder = locationManager.getScenesHolder();
+        JPanel locationsHolder = locationManager.getLocationsHolder();
 
-        CardLayout cl = (CardLayout)(scenesHolder.getLayout());
-        cl.show(scenesHolder, (String)e.getItem());
+        CardLayout cl = (CardLayout)(locationsHolder.getLayout());
+        cl.show(locationsHolder, (String)e.getItem());
     }
 }

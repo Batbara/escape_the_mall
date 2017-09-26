@@ -1,14 +1,8 @@
 package locations.vegetable.vegstand;
 
-import frames.PanelWithImage;
 import locations.vegetable.VegetableDepartmentLocation;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,7 +17,7 @@ public class VegetableStandScenePresenter implements Observer {
         VegetableStandScene vegetableStandScene = (VegetableStandScene)observableView;
         VegetableDepartmentLocation parentLocation = vegetableStandScene.getParentPane();
         parentLocation.sceneChanged(vegetableStandScene.getSceneID());
-        JPanel parentPane = parentLocation.getContainer();
+        JPanel parentPane = parentLocation.getLocationContainer();
         parentPane.remove(vegetableStandScene.getVegetablesScene());
         parentPane.revalidate();
         parentPane.repaint();

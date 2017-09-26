@@ -1,12 +1,14 @@
 package locations.vegetable.vegstand;
 
 import frames.PanelWithImage;
+import frames.SceneSwitcherListener;
 import frames.Tools;
+import locations.SceneSwitcher;
 
 import java.io.IOException;
 import java.util.Observable;
 
-public class VegetablesStandView extends Observable {
+public class VegetablesStandView extends Observable implements SceneSwitcher {
     private PanelWithImage vegStandPanel;
     private VegetableStandPresenter presenter;
     private VegetableStandScene parentScene;
@@ -14,11 +16,7 @@ public class VegetablesStandView extends Observable {
     public VegetablesStandView(VegetableStandScene parentScene) {
         initPanel();
         this.parentScene = parentScene;
-        vegStandPanel.addMouseListener(new VegStandListener(this));
-    }
-
-    public VegetableStandPresenter getPresenter() {
-        return presenter;
+        vegStandPanel.addMouseListener(new SceneSwitcherListener(this));
     }
 
     public void setPresenter(VegetableStandPresenter presenter) {
@@ -27,7 +25,7 @@ public class VegetablesStandView extends Observable {
         addObserver(presenter);
     }
 
-    public void viewChanged() {
+    public void sceneSwitched() {
         setChanged();
         notifyObservers(true);
     }

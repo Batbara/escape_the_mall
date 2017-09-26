@@ -3,6 +3,7 @@ package frames;
 import frames.GameScreen;
 import frames.MainFrame;
 import frames.StarterScreen;
+import status.StatusBar;
 
 import javax.swing.*;
 
@@ -19,5 +20,12 @@ public class MainFramePresenter {
         frame.add(gameScreen);
         frame.revalidate();
         frame.repaint();
+        startTimer();
+    }
+    private void startTimer(){
+        StatusBar statusBar = mainFrame.getGameScreen().getStatusBar();
+
+        Timer timer = statusBar.getTimer();
+        timer.start();
     }
 }
