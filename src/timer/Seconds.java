@@ -2,11 +2,10 @@ package timer;
 
 public class Seconds implements TimeUnit {
     private int secondsValue;
-    static final int MAX_VALUE = 59;
-    public Seconds(){
+    Seconds(){
         secondsValue=0;
     }
-    public void setToZero(){
+    void setToZero(){
         secondsValue = 0;
     }
     @Override
@@ -21,6 +20,6 @@ public class Seconds implements TimeUnit {
 
     @Override
     public boolean checkMaxValue() {
-        return secondsValue == MAX_VALUE;
+        return secondsValue == TimeUnit.MAX_VALUE;
     }
 }

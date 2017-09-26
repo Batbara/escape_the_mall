@@ -1,8 +1,8 @@
 package locations.thedoor.doorscene;
 
-import frames.PanelWithImage;
-import frames.SceneSwitcherListener;
-import frames.Tools;
+import commongui.PanelWithImage;
+import commongui.SceneSwitcherListener;
+import commongui.Tools;
 import locations.Scene;
 import locations.SceneSwitcher;
 import locations.thedoor.TheDoorLocation;
@@ -12,34 +12,37 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Observable;
 
-public class DoorScene extends Observable implements Scene, SceneSwitcher{
+public class DoorScene extends Observable implements Scene, SceneSwitcher {
     private class DoorHandle {
         private JPanel doorHandlePanel;
-        public DoorHandle(){
+
+        DoorHandle() {
             initHandlePanel();
             doorHandlePanel.addMouseListener(new SceneSwitcherListener(DoorScene.this));
         }
-        private void initHandlePanel(){
+
+        private void initHandlePanel() {
             doorHandlePanel = new JPanel();
-            doorHandlePanel.setSize(new Dimension(50,80));
+            doorHandlePanel.setSize(new Dimension(50, 80));
             doorHandlePanel.setPreferredSize(doorHandlePanel.getSize());
 
             doorHandlePanel.setOpaque(false);
         }
 
     }
+
     private PanelWithImage doorScenePanel;
     private TheDoorLocation parentLocation;
 
-    public DoorScene(TheDoorLocation parentLocation){
+    public DoorScene(TheDoorLocation parentLocation) {
         initScenePanel();
         this.parentLocation = parentLocation;
         placeObjectsOnScene();
-        addObserver(new DoorScenePresenter(this));
+        addObserver(new DoorScenePresenter());
 
     }
-    private void initScenePanel(){
-        System.out.println("initing panel");
+
+    private void initScenePanel() {
         try {
             doorScenePanel = Tools.getInstance().createPanel("/locations/thedoor/img/door");
         } catch (IOException e) {
@@ -47,16 +50,15 @@ public class DoorScene extends Observable implements Scene, SceneSwitcher{
         }
     }
 
-    public TheDoorLocation getParentLocation() {
+    TheDoorLocation getParentLocation() {
         return parentLocation;
     }
 
     @Override
     public void placeObjectsOnScene() {
-        //doorScenePanel.setLayout(null);
         DoorScene.DoorHandle doorHandle = this.new DoorHandle();
         JPanel handlePanel = doorHandle.doorHandlePanel;
-        handlePanel.setBounds(348,265,handlePanel.getWidth(),handlePanel.getHeight());
+        handlePanel.setBounds(348, 265, handlePanel.getWidth(), handlePanel.getHeight());
         doorScenePanel.add(handlePanel);
 
     }
@@ -69,11 +71,11 @@ public class DoorScene extends Observable implements Scene, SceneSwitcher{
     @Override
     public void sceneSwitched() {
         setChanged();
-        notifyObservers();
+        notifyObservers(getSceneID());
     }
 
     public PanelWithImage getDoorScenePanel() {
-        System.out.println("getting door scene panel");
         return doorScenePanel;
     }
+
 }

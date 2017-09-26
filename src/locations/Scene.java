@@ -1,9 +1,8 @@
 package locations;
 
-import java.io.IOException;
-
 public interface Scene {
 
-     void placeObjectsOnScene();
+    void placeObjectsOnScene();
+
     String getSceneID();
 }

@@ -1,4 +1,4 @@
-package subquests.racoonquest;
+package subquests.raccoonquest;
 
 import subquests.Expression;
 import subquests.ExpressionGraph;

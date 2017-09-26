@@ -1,26 +1,23 @@
 package locations.vegetable.vegcloseup;
 
-import com.sun.deploy.util.LinkMouseListener;
-import frames.PanelWithImage;
-import frames.Tools;
+import commongui.PanelWithImage;
+import commongui.Tools;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 
 public class LemonzView extends Observable {
     private PanelWithImage lemonzPanel;
-    public LemonzView(){
+
+    public LemonzView() {
         initPanel();
         lemonzPanel.addMouseListener(new LemonzMouseListener());
 
     }
-    private void initPanel(){
+
+    private void initPanel() {
         try {
-            lemonzPanel= Tools.getInstance().createPanel("/locations/vegetable/img/lemonz");
+            lemonzPanel = Tools.getInstance().createPanel("/locations/vegetable/img/lemonz");
         } catch (IOException e) {
             e.printStackTrace();
         }

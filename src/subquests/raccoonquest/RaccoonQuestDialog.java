@@ -1,9 +1,8 @@
-package subquests.racoonquest;
+package subquests.raccoonquest;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class RaccoonQuestDialog extends JDialog{

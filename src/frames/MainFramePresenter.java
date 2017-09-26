@@ -1,18 +1,17 @@
 package frames;
 
-import frames.GameScreen;
-import frames.MainFrame;
-import frames.StarterScreen;
 import status.StatusBar;
 
 import javax.swing.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class MainFramePresenter {
+public class MainFramePresenter implements Observer{
     private MainFrame mainFrame;
     public MainFramePresenter(MainFrame mainFrame){
         this.mainFrame = mainFrame;
     }
-    public void showGameScreen(){
+    private void showGameScreen(){
         JPanel gameScreen = mainFrame.getGameScreen().getGameScreen();
         JComponent starterScreen = mainFrame.getStarterScreen().getScreen();
         JFrame frame = mainFrame.getFrame();
@@ -27,5 +26,12 @@ public class MainFramePresenter {
 
         Timer timer = statusBar.getTimer();
         timer.start();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        mainFrame = (MainFrame)o;
+        showGameScreen();
+        startTimer();
     }
 }

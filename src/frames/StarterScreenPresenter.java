@@ -10,7 +10,4 @@ public class StarterScreenPresenter {
     public StarterScreenPresenter (StarterScreen starterScreen){
         this.starterScreen = starterScreen;
     }
-    public void hideScreen(){
-        starterScreen.getScreen().setVisible(false);
-    }
 }

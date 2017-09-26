@@ -9,29 +9,28 @@ public class TimerModel {
         seconds = new Seconds();
     }
 
-    public void increaseTime() {
+    void increaseTime() {
         if (seconds.checkMaxValue()) {
             seconds.setToZero();
-            if(minutes.checkMaxValue()){
+            if (minutes.checkMaxValue()) {
                 //TODO throw exception timer overflow
-            }
-            else minutes.increment();
-        }
-        else seconds.increment();
+            } else minutes.increment();
+        } else seconds.increment();
     }
 
 
-    public String getTimeUnitInString(TimeUnit timeUnit){
+    public String getTimeUnitInString(TimeUnit timeUnit) {
         int value = timeUnit.getValue();
-        if(value == 0){
+        if (value == 0) {
             return "00";
         }
         String stringValue = Integer.toString(value);
-        if(value / 10==0){
-            return "0"+stringValue;
+        if (value / 10 == 0) {
+            return "0" + stringValue;
         }
         return stringValue;
     }
+
     public Minutes getMinutes() {
         return minutes;
     }

@@ -5,9 +5,10 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class SwitchItemListener implements ItemListener{
+public class SwitchItemListener implements ItemListener {
     private LocationManager locationManager;
-    public SwitchItemListener(LocationManager locationManager){
+
+    public SwitchItemListener(LocationManager locationManager) {
         this.locationManager = locationManager;
     }
 
@@ -16,7 +17,7 @@ public class SwitchItemListener implements ItemListener{
 
         JPanel locationsHolder = locationManager.getLocationsHolder();
 
-        CardLayout cl = (CardLayout)(locationsHolder.getLayout());
-        cl.show(locationsHolder, (String)e.getItem());
+        CardLayout cl = (CardLayout) (locationsHolder.getLayout());
+        cl.show(locationsHolder, (String) e.getItem());
     }
 }

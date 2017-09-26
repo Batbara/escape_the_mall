@@ -1,8 +1,12 @@
 package frames;
 
+import commongui.PanelWithImage;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,7 +30,7 @@ public class StarterScreen {
     }
 
     private void initScreen() throws IOException {
-        Image background = ImageIO.read(new File(this.getClass().getResource("/img/background.png").getPath()));
+        Image background = ImageIO.read(new File(this.getClass().getResource("/frames/img/background.png").getPath()));
         screen = new PanelWithImage(background);
         screen.setLayout(new BorderLayout());
 
@@ -49,8 +53,8 @@ public class StarterScreen {
     private JButton createButton(String fileName, String pressedFileName,
                                  String tipText) {
 
-        String mainImgLocation = "/img/" + fileName + ".png";
-        String pressedImgLocation = "/img/" + pressedFileName + ".png";
+        String mainImgLocation = "/frames/img/" + fileName + ".png";
+        String pressedImgLocation = "/frames/img/" + pressedFileName + ".png";
 
         ImageIcon image = new ImageIcon(this.getClass().getResource(mainImgLocation));
         ImageIcon pressedImage = new ImageIcon(this.getClass().getResource(pressedImgLocation));
@@ -104,9 +108,14 @@ public class StarterScreen {
         }
     }
 
-    public void addButtonsListeners(StartButtonListener playListener){
+    public void addButtonsListeners(MainFrame mainFrame){
         JButton playButton = optionButtons.get("play");
-        playButton.addActionListener(playListener);
+        playButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.showGameScreen();
+            }
+        });
     }
     public PanelWithImage getScreen() {
         return screen;

@@ -1,14 +1,15 @@
 package locations.vegetable.vegstand;
 
-import frames.PanelWithImage;
-import frames.Tools;
+import commongui.PanelWithImage;
+import commongui.Tools;
 import locations.Scene;
+import locations.SceneSwitcher;
 import locations.vegetable.VegetableDepartmentLocation;
 
 import java.io.IOException;
 import java.util.Observable;
 
-public class VegetableStandScene extends Observable implements Scene {
+public class VegetableStandScene extends Observable implements Scene, SceneSwitcher {
     private PanelWithImage vegetablesScene;
     private VegetablesStandView standView;
     private VegetableDepartmentLocation parentPane;
@@ -19,11 +20,11 @@ public class VegetableStandScene extends Observable implements Scene {
 
         standView = new VegetablesStandView(this);
 
-        VegetableStandPresenter standPresenter = new VegetableStandPresenter(new VegetablesStand(), standView);
+        VegetableStandPresenter standPresenter = new VegetableStandPresenter(new VegetablesStand());
         standView.setPresenter(standPresenter);
         placeObjectsOnScene();
 
-        addObserver(new VegetableStandScenePresenter(this));
+        addObserver(new VegetableStandScenePresenter());
     }
 
     private void initScene() {
@@ -59,5 +60,11 @@ public class VegetableStandScene extends Observable implements Scene {
 
     public VegetableDepartmentLocation getParentPane() {
         return parentPane;
+    }
+
+    @Override
+    public void sceneSwitched() {
+        setChanged();
+        notifyObservers("vegstand");
     }
 }

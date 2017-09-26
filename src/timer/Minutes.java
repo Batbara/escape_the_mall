@@ -1,9 +1,9 @@
 package timer;
 
-public class Minutes implements TimeUnit{
-    int minutesValue;
-    static final int MAX_VALUE = 59;
-    public Minutes(){
+public class Minutes implements TimeUnit {
+    private int minutesValue;
+
+    Minutes() {
         minutesValue = 0;
     }
 
@@ -19,6 +19,6 @@ public class Minutes implements TimeUnit{
 
     @Override
     public boolean checkMaxValue() {
-        return minutesValue == MAX_VALUE;
+        return minutesValue == TimeUnit.MAX_VALUE;
     }
 }

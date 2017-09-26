@@ -1,4 +1,4 @@
-package frames;
+package commongui;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -20,7 +20,6 @@ public class Tools {
         panel.setSize(new Dimension(860,529));
         panel.setPreferredSize(panel.getSize());
         panel.setLayout(null);
-        //vegetablesScene.setBorder(new BevelBorder(Color.red));
         return panel;
     }
     public PanelWithImage createPanel(String fileName) throws IOException {

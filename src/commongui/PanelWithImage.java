@@ -1,4 +1,4 @@
-package frames;
+package commongui;
 import javax.swing.*;
 import java.awt.*;
 

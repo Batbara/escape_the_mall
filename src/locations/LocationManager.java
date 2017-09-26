@@ -13,7 +13,8 @@ public class LocationManager {
     private LocationSwitcher locationSwitcher;
     private VegetableDepartmentLocation vegDptLocation;
     private TheDoorLocation theDoorLocation;
-    public LocationManager(){
+
+    public LocationManager() {
         initMainPanel();
         initLocations();
         initLocationsHolder();
@@ -21,35 +22,40 @@ public class LocationManager {
         locationSwitcher.assignListener(this);
         addToGamePane();
     }
-    private void initMainPanel(){
+
+    private void initMainPanel() {
         gamePane = new JPanel(new BorderLayout());
     }
-    private void initLocations(){
+
+    private void initLocations() {
         vegDptLocation = new VegetableDepartmentLocation();
         theDoorLocation = new TheDoorLocation();
     }
-    private void initLocationsHolder(){
-         locationsHolder = new JPanel(new CardLayout());
-         locationsHolder.setSize(new Dimension(860,529));
-         locationsHolder.setPreferredSize(locationsHolder.getSize());
-         locationsHolder.setMaximumSize(locationsHolder.getSize());
+
+    private void initLocationsHolder() {
+        locationsHolder = new JPanel(new CardLayout());
+        locationsHolder.setSize(new Dimension(860, 529));
+        locationsHolder.setPreferredSize(locationsHolder.getSize());
+        locationsHolder.setMaximumSize(locationsHolder.getSize());
         //locationsHolder = place all locations on this panel
-        locationsHolder.add(vegDptLocation.getLocationContainer(),vegDptLocation.getLocationLabel());
-        locationsHolder.add(theDoorLocation.getLocationContainer(),theDoorLocation.getLocationLabel());
+        locationsHolder.add(vegDptLocation.getLocationContainer(), vegDptLocation.getLocationLabel());
+        locationsHolder.add(theDoorLocation.getLocationContainer(), theDoorLocation.getLocationLabel());
     }
-    private Vector<String> getLocationsNames(){
+
+    private Vector<String> getLocationsNames() {
         Vector<String> locationsNamesList = new Vector<>();
         locationsNamesList.add(vegDptLocation.getLocationLabel());
         locationsNamesList.add(theDoorLocation.getLocationLabel());
         return locationsNamesList;
     }
-    private void addToGamePane(){
 
-        gamePane.add(locationSwitcher.getSwitcherContainer(),BorderLayout.PAGE_START);
-        gamePane.add(locationsHolder,BorderLayout.CENTER);
+    private void addToGamePane() {
+
+        gamePane.add(locationSwitcher.getSwitcherContainer(), BorderLayout.PAGE_START);
+        gamePane.add(locationsHolder, BorderLayout.CENTER);
     }
 
-    public JPanel getLocationsHolder() {
+    JPanel getLocationsHolder() {
         return locationsHolder;
     }
 

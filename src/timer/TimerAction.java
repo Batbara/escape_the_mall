@@ -5,8 +5,9 @@ import java.awt.event.ActionListener;
 import java.util.TimerTask;
 
 public class TimerAction implements ActionListener {
-    TimerView timerView;
-    public TimerAction(TimerView timerView){
+    private TimerView timerView;
+
+    public TimerAction(TimerView timerView) {
         this.timerView = timerView;
     }
 

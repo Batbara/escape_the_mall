@@ -3,23 +3,24 @@ package frames;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.Observable;
 
 
-public class MainFrame {
+public class MainFrame extends Observable{
     private JFrame frame;
     private StarterScreen starterScreen;
     private GameScreen gameScreen;
-    private MainFramePresenter framePresenter;
 
     public MainFrame() throws IOException {
         initFrame();
-        framePresenter = new MainFramePresenter(this);
-        starterScreen = new StarterScreen();
-        starterScreen.addButtonsListeners(new StartButtonListener(framePresenter));
-        gameScreen = new GameScreen();
+        initScreens();
+
+        MainFramePresenter framePresenter = new MainFramePresenter(this);
+        starterScreen.addButtonsListeners(this);
+
 
         frame.add(starterScreen.getScreen());
-        //frame.add(gameScreen.getGameScreen());
+        addObserver(framePresenter);
     }
 
     private void initFrame() throws IOException {
@@ -33,18 +34,24 @@ public class MainFrame {
         frame.setSize(frame.getPreferredSize());
         frame.setResizable(false);
     }
+    private void initScreens(){
+        starterScreen = new StarterScreen();
+        gameScreen = new GameScreen();
+    }
 
-    public StarterScreen getStarterScreen() {
+    StarterScreen getStarterScreen() {
         return starterScreen;
     }
 
-    public GameScreen getGameScreen() {
+    GameScreen getGameScreen() {
         return gameScreen;
     }
 
-
-
-    public JFrame getFrame() {
+    JFrame getFrame() {
         return frame;
+    }
+    public void showGameScreen(){
+        setChanged();
+        notifyObservers();
     }
 }

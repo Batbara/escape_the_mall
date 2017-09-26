@@ -1,10 +1,8 @@
 package inventory;
 
-import frames.PanelWithImage;
-import frames.Tools;
+import commongui.PanelWithImage;
+import commongui.Tools;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 
 public class InventoryView {

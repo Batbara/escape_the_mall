@@ -1,6 +1,5 @@
-package frames;
+package commongui;
 
-import frames.PanelWithImage;
 import locations.SceneSwitcher;
 
 import javax.swing.*;

@@ -4,7 +4,8 @@ package locations.vegetable.vegstand;
 public class VegetablesStand {
     private String description;
     private boolean pressedStatus;
-    public VegetablesStand(){
+
+    public VegetablesStand() {
         pressedStatus = false;
         description = "Стойка с овощами. Может, взять помидорку?";
 
@@ -14,7 +15,7 @@ public class VegetablesStand {
         this.pressedStatus = pressedStatus;
     }
 
-    public boolean isPressed(){
+    public boolean isPressed() {
         return pressedStatus;
     }
 

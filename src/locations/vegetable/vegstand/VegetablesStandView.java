@@ -1,8 +1,8 @@
 package locations.vegetable.vegstand;
 
-import frames.PanelWithImage;
-import frames.SceneSwitcherListener;
-import frames.Tools;
+import commongui.PanelWithImage;
+import commongui.SceneSwitcherListener;
+import commongui.Tools;
 import locations.SceneSwitcher;
 
 import java.io.IOException;
@@ -10,27 +10,24 @@ import java.util.Observable;
 
 public class VegetablesStandView extends Observable implements SceneSwitcher {
     private PanelWithImage vegStandPanel;
-    private VegetableStandPresenter presenter;
     private VegetableStandScene parentScene;
 
-    public VegetablesStandView(VegetableStandScene parentScene) {
+    VegetablesStandView(VegetableStandScene parentScene) {
         initPanel();
         this.parentScene = parentScene;
         vegStandPanel.addMouseListener(new SceneSwitcherListener(this));
     }
 
-    public void setPresenter(VegetableStandPresenter presenter) {
-        this.presenter = presenter;
-
+    void setPresenter(VegetableStandPresenter presenter) {
         addObserver(presenter);
     }
 
     public void sceneSwitched() {
         setChanged();
-        notifyObservers(true);
+        notifyObservers(parentScene.getSceneID());
     }
 
-    private void initPanel()  {
+    private void initPanel() {
         try {
             vegStandPanel = Tools.getInstance().createPanel("/locations/vegetable/img/vegStand");
         } catch (IOException e) {
@@ -38,11 +35,11 @@ public class VegetablesStandView extends Observable implements SceneSwitcher {
         }
     }
 
-    public PanelWithImage getVegStandPanel() {
+    PanelWithImage getVegStandPanel() {
         return vegStandPanel;
     }
 
-    public VegetableStandScene getParentScene() {
+    VegetableStandScene getParentScene() {
         return parentScene;
     }
 }

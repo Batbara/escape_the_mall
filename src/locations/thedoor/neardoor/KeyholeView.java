@@ -1,4 +1,4 @@
 package locations.thedoor.neardoor;
 
-public class NearDoorPresenter {
+public class KeyholeView {
 }
