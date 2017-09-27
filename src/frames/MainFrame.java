@@ -51,6 +51,10 @@ public class MainFrame extends Observable{
         return frame;
     }
     public void showGameScreen(){
+        JOptionPane.showMessageDialog(frame,
+                "Вам предстоит найти выход из закрытого супермаркета. Покажите минимальное время и попадите в таблицу рекордов!",
+                "Побег из супермаркета",
+                JOptionPane.INFORMATION_MESSAGE);
         setChanged();
         notifyObservers();
     }

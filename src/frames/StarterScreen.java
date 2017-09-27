@@ -15,7 +15,6 @@ import java.util.Map;
 public class StarterScreen {
     private PanelWithImage screen;
     private Map<String, JButton> optionButtons;
-    private StarterScreenPresenter presenter;
 
 
     public StarterScreen() {
@@ -24,7 +23,6 @@ public class StarterScreen {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        presenter = new StarterScreenPresenter(this);
         initButtons();
         placeButtonsOnScreen();
     }

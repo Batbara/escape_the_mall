@@ -6,9 +6,13 @@ import status.StatusBar;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Observable;
 
 
-class GameScreen {
+class GameScreen extends Observable{
     private StatusBar statusBar;
     private InventoryView inventoryView;
     private LocationManager locationManager;
@@ -18,8 +22,34 @@ class GameScreen {
         initComponents();
         gameScreen = new JPanel();
         placeComponents();
+        addKeyBinder();
+        addObserver(new GameScreenPresenter());
     }
+    private void addKeyBinder(){
+        gameScreen.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0),"pause");
+        Action pauseTimer = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+                pauseTimer();
+                JOptionPane.showMessageDialog(gameScreen,
+                        "Игра на паузе",
+                        "Пауза",
+                        JOptionPane.INFORMATION_MESSAGE);
+                resumeTimer();
+            }
+        };
+        gameScreen.getActionMap().put("pause",pauseTimer);
+    }
+    private void resumeTimer(){
+        setChanged();
+        notifyObservers("resume");
+    }
+    private void pauseTimer(){
+
+        setChanged();
+        notifyObservers("pause");
+    }
     private void initComponents() {
         statusBar = new StatusBar();
         inventoryView = new InventoryView();

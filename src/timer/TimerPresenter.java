@@ -25,11 +25,19 @@ public class TimerPresenter implements Observer {
         secondsLabel.setText(timerModel.getTimeUnitInString(timeSeconds));
         minutesLabel.setText(timerModel.getTimeUnitInString(timeMinutes));
     }
+    private void stopTimer(){
+        TimerView timerView = (TimerView) observable;
+       // Timer timer = timerView.g
+    }
 
     @Override
     public void update(Observable o, Object arg) {
         observable = o;
-        timerModel.increaseTime();
-        repaintTimer();
+        if(arg instanceof Boolean){
+
+        } else {
+            timerModel.increaseTime();
+            repaintTimer();
+        }
     }
 }

@@ -3,6 +3,8 @@ package frames;
 import status.StatusBar;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Observable;
 import java.util.Observer;
 
