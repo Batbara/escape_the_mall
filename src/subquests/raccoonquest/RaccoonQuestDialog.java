@@ -2,56 +2,73 @@ package subquests.raccoonquest;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class RaccoonQuestDialog extends JDialog{
+public class RaccoonQuestDialog extends Observable{
+    private JDialog dialogFrame;
     private List<JButton> answerButtons;
-    private JTextPane questionPane;
+    private JTextArea questionPane;
+    private JFrame ownerFrame;
     public RaccoonQuestDialog(JFrame owner){
-        super(owner,"Квееееест", ModalityType.DOCUMENT_MODAL);
+        dialogFrame = new JDialog(owner,"Квест", Dialog.ModalityType.DOCUMENT_MODAL);
+        this.ownerFrame = owner;
         initDialogWindow();
         initQuestionPane();
         initAnswerButtons();
         placeComponentsOnWindow();
+        addObserver(new RaccoonQuestPresenter(new RaccoonQuestModel(),this));
     }
     private void initDialogWindow(){
         final int DIALOG_WIDTH = 250;
         final int DIALOG_HEIGHT = 350;
 
-        this.setSize(new Dimension(DIALOG_WIDTH,DIALOG_HEIGHT));
-        this.setPreferredSize(new Dimension(DIALOG_WIDTH, DIALOG_HEIGHT));
-        this.setMaximumSize(new Dimension(DIALOG_WIDTH, DIALOG_HEIGHT));
-        this.setLayout(new GridLayout(2,1));
-        this.pack();
-        this.setResizable(false);
+        dialogFrame.setSize(new Dimension(DIALOG_WIDTH,DIALOG_HEIGHT));
+        dialogFrame.setPreferredSize(new Dimension(DIALOG_WIDTH, DIALOG_HEIGHT));
+        dialogFrame.setMaximumSize(new Dimension(DIALOG_WIDTH, DIALOG_HEIGHT));
+        dialogFrame.setLayout(new GridLayout(2,1));
+        dialogFrame.pack();
+        dialogFrame.setResizable(false);
         centerOnScreen();
     }
     private void initQuestionPane(){
-        questionPane = new JTextPane();
+        questionPane = new JTextArea();
         questionPane.setSize(new Dimension(250,150));
         questionPane.setPreferredSize(questionPane.getSize());
+        questionPane.setMaximumSize(questionPane.getPreferredSize());
         questionPane.setEditable(false);
+        questionPane.setLineWrap(true);
+        questionPane.setWrapStyleWord(true);
         questionPane.setBackground(Color.decode("#E9FAFD"));
         questionPane.setBorder(BorderFactory.createLoweredBevelBorder());
-
-        questionPane.setFont(new Font("Helvetica", Font.PLAIN, 19));
+        questionPane.setText("Вы тянетесь за пакетиком с лимонами, но вдруг слышите странный звук позади себя. Что сделать?");
+        questionPane.setFont(new Font("Helvetica", Font.PLAIN, 20));
     }
     private void initAnswerButtons(){
         answerButtons = new ArrayList<>();
-        int buttonsNumber = 3;
-        for(int count = 0; count<buttonsNumber; count++){
-            JButton button = new JButton("button "+(count+1));
-            button.setSize(new Dimension(this.getWidth(),40));
-            answerButtons.add(new JButton("button "+(count+1)));
+        String[] buttonsNames = {"Смело оглянуться","Замереть на полпути к пакетику","<html><center>Бежать сломя голову<br>неизвестно куда</center>"};
+        for(String buttonName : buttonsNames){
+            JButton button = new JButton(buttonName);
+            button.setActionCommand(buttonName);
+            button.setSize(new Dimension(dialogFrame.getWidth(),80));
+            button.setPreferredSize(button.getSize());
+
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    questionAnswered(button.getActionCommand());
+                    System.out.println("нажата кнопка "+button.getActionCommand());
+                }
+            });
+
+            answerButtons.add(button);
        }
-        /*answerButtons.add(new JButton("lol"));
-        answerButtons.add(new JButton("kek"));
-        answerButtons.add(new JButton("cheburek"));*/
     }
     private JPanel getButtonsHolder(){
         JPanel buttonsHolder = new JPanel(new GridLayout(3,1));
-       // buttonsHolder.setLayout(new BoxLayout(buttonsHolder,BoxLayout.Y_AXIS));
 
         for(JButton button : answerButtons){
             buttonsHolder.add(button);
@@ -59,16 +76,37 @@ public class RaccoonQuestDialog extends JDialog{
         return buttonsHolder;
     }
     private void placeComponentsOnWindow(){
-        this.add(questionPane);
-        this.add(getButtonsHolder());
+        dialogFrame.add(questionPane);
+        dialogFrame.add(getButtonsHolder());
     }
-    public void centerOnScreen() {
-        final int width = this.getWidth();
-        final int height = this.getHeight();
+    private void centerOnScreen() {
+        final int width = dialogFrame.getWidth();
+        final int height = dialogFrame.getHeight();
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screenSize.width / 2) - (width / 2);
         int y = (screenSize.height / 2) - (height / 2);
 
-        this.setLocation(x, y);
+        dialogFrame.setLocation(x, y);
+    }
+
+    private void questionAnswered(String buttonName){
+        setChanged();
+        notifyObservers(buttonName);
+    }
+
+    public JDialog getDialogFrame() {
+        return dialogFrame;
+    }
+
+    public JTextArea getQuestionPane() {
+        return questionPane;
+    }
+
+    public List<JButton> getAnswerButtons() {
+        return answerButtons;
+    }
+
+    public JFrame getOwnerFrame() {
+        return ownerFrame;
     }
 }

@@ -7,23 +7,29 @@ import java.util.Observable;
 
 
 public class MainFrame extends Observable{
+    private static final MainFrame instance = new MainFrame();
     private JFrame frame;
     private StarterScreen starterScreen;
     private GameScreen gameScreen;
-
-    public MainFrame() throws IOException {
+    private GameOverScreen gameOverScreen;
+    public static MainFrame getInstance(){
+        return instance;
+    }
+    private MainFrame()  {
         initFrame();
         initScreens();
 
         MainFramePresenter framePresenter = new MainFramePresenter(this);
-        starterScreen.addButtonsListeners(this);
-
+        addStarterButtonsListeners();
 
         frame.add(starterScreen.getScreen());
         addObserver(framePresenter);
     }
+    public void addStarterButtonsListeners(){
 
-    private void initFrame() throws IOException {
+        starterScreen.addButtonsListeners(this);
+    }
+    private void initFrame(){
         frame = new JFrame("Escape the Mall");
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -37,6 +43,7 @@ public class MainFrame extends Observable{
     private void initScreens(){
         starterScreen = new StarterScreen();
         gameScreen = new GameScreen();
+        gameOverScreen = new GameOverScreen();
     }
 
     StarterScreen getStarterScreen() {
@@ -56,6 +63,26 @@ public class MainFrame extends Observable{
                 "Побег из супермаркета",
                 JOptionPane.INFORMATION_MESSAGE);
         setChanged();
-        notifyObservers();
+        notifyObservers("game");
+    }
+    public void showStarterScreen(){
+        setChanged();
+        notifyObservers("starter");
+    }
+    public void showGameOverScreen(){
+        setChanged();
+        notifyObservers("gameover");
+    }
+
+    public GameOverScreen getGameOverScreen() {
+        return gameOverScreen;
+    }
+
+    public void setStarterScreen(StarterScreen starterScreen) {
+        this.starterScreen = starterScreen;
+    }
+
+    public void setGameScreen(GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
     }
 }

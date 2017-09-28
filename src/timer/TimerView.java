@@ -73,10 +73,6 @@ public class TimerView extends Observable {
         setChanged();
         notifyObservers();
     }
-    public void stopTimer(){
-        setChanged();
-        notifyObservers(true);
-    }
 
     JLabel getMinutesLabel() {
         return minutesLabel;

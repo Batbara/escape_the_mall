@@ -21,13 +21,9 @@ public class StatusBar {
     }
     private void initStatusBarPanel(){
         statusBarPanel = new JPanel();
-       // statusBarPanel.setLayout(new BoxLayout(statusBarPanel, BoxLayout.X_AXIS));
         statusBarPanel.setLayout(null);
-       // statusBarPanel.setBackground(Color.CYAN);
         statusBarPanel.setSize(new Dimension(500, 50));
         statusBarPanel.setPreferredSize(statusBarPanel.getSize());
-        //Border barBorder = BorderFactory.createLineBorder(Color.BLACK);
-        //statusBarPanel.setBorder(barBorder);
     }
     private void initTimerView(){
         timerView = new TimerView();
@@ -43,5 +39,9 @@ public class StatusBar {
     }
     public Timer getTimer() {
         return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
     }
 }

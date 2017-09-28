@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 import java.util.Observable;
 
 
-class GameScreen extends Observable{
+class GameScreen extends Observable {
     private StatusBar statusBar;
     private InventoryView inventoryView;
     private LocationManager locationManager;
@@ -25,12 +25,13 @@ class GameScreen extends Observable{
         addKeyBinder();
         addObserver(new GameScreenPresenter());
     }
-    private void addKeyBinder(){
-        gameScreen.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0),"pause");
+
+    private void addKeyBinder() {
+        gameScreen.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "pause");
+
         Action pauseTimer = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 pauseTimer();
                 JOptionPane.showMessageDialog(gameScreen,
                         "Игра на паузе",
@@ -39,17 +40,22 @@ class GameScreen extends Observable{
                 resumeTimer();
             }
         };
-        gameScreen.getActionMap().put("pause",pauseTimer);
+        gameScreen.requestFocus();
+        gameScreen.getActionMap().put("pause", pauseTimer);
+
     }
-    private void resumeTimer(){
+
+    private void resumeTimer() {
         setChanged();
         notifyObservers("resume");
     }
-    private void pauseTimer(){
+
+    private void pauseTimer() {
 
         setChanged();
         notifyObservers("pause");
     }
+
     private void initComponents() {
         statusBar = new StatusBar();
         inventoryView = new InventoryView();

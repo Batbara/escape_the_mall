@@ -5,6 +5,7 @@ import locations.vegetable.VegetableDepartmentLocation;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 import java.util.Vector;
 
 public class LocationManager {
@@ -42,8 +43,8 @@ public class LocationManager {
         locationsHolder.add(theDoorLocation.getLocationContainer(), theDoorLocation.getLocationLabel());
     }
 
-    private Vector<String> getLocationsNames() {
-        Vector<String> locationsNamesList = new Vector<>();
+    private List<String> getLocationsNames() {
+        List<String> locationsNamesList = new Vector<>();
         locationsNamesList.add(vegDptLocation.getLocationLabel());
         locationsNamesList.add(theDoorLocation.getLocationLabel());
         return locationsNamesList;

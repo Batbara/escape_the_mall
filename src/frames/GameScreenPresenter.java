@@ -9,11 +9,6 @@ import java.util.Observer;
 public class GameScreenPresenter implements Observer {
     Observable observable;
 
-    private void resumeTimer(){
-        GameScreen gameScreen = (GameScreen)observable;
-        Timer timer = gameScreen.getStatusBar().getTimer();
-        timer.start();
-    }
     @Override
     public void update(Observable o, Object arg) {
         observable = o;

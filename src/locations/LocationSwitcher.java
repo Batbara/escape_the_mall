@@ -2,14 +2,15 @@ package locations;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 import java.util.Vector;
 
 class LocationSwitcher {
     private JPanel switcherContainer;
-    private Vector<String> labels;
+    private List<String> labels;
     private JComboBox switchingBox;
 
-    LocationSwitcher(Vector<String> labels) {
+    LocationSwitcher(List<String> labels) {
         this.labels = labels;
         switcherContainer = new JPanel();
         initComboBox();
@@ -17,7 +18,7 @@ class LocationSwitcher {
     }
 
     private void initComboBox() {
-        switchingBox = new JComboBox(labels);
+        switchingBox = new JComboBox(new Vector(labels));
     }
 
     private void addToContainer() {
